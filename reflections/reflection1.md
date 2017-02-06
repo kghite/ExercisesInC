@@ -22,13 +22,13 @@
 
 
 ## ThinkOS Reading Questions
-	[Chapter 1]{../reading_questions/think_os_ch1.md}
+	[Chapter 1](../reading_questions/think_os_ch1.md)
 
-	[Chapter 2]{../reading_questions/think_os_ch2.md}
+	[Chapter 2](../reading_questions/think_os_ch2.md)
 
-	[Chapter 3]{../reading_questions/think_os_ch3.md}
+	[Chapter 3](../reading_questions/think_os_ch3.md)
 
-	[Chapter 4]{../reading_questions/think_os_ch4.md}
+	[Chapter 4](../reading_questions/think_os_ch4.md)
 
 
 ## Exam Question
