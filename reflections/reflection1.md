@@ -34,7 +34,7 @@ We have been building our knowledge of the libraries and topics that we need to 
 ### Question
 Based off of ThinkOS Chapter 2 areas not covered by the reading questions:
 
-Why are two unwanted interactions that could occur if procceses were not isolated in a system? What are three capabilities required in an operating system with isolated processes?
+What are two unwanted interactions that could occur if procceses were not isolated in a system? What are three capabilities found in an operating system with isolated processes?
 
 ### Solution
 
