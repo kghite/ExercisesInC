@@ -5,7 +5,11 @@
 1) What abstractions do file systems provide?  Give an example of something that is logically 
 true about files systems but not true of their implementations.
 
+A file system is an abstraction of the behavior of persistent storage.  This includes operating as if the files were stored in contiguous memory, while the actual storage is implemented as blocks of memory acting as small, individual hard drives.  The file system reads the data in a one large chunk of memory, jumping between blocks as it processes the data stream.
+
 2) What information do you imagine is stored in an `OpenFileTableEntry`?
+
+
 
 3) What are some of the ways operating systems deal with the relatively slow performance of persistent storage?
 
