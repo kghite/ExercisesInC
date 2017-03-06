@@ -39,24 +39,24 @@ int main(int argc, char *argv[]) {
 	printf("Reading files: \n");
 	for (files = 0; files < argc; files++) {
 		printf("%s\n", argv[files]);
-        file_set[files] = fopen(argv[files], (append_flag ? "a" : "w"));
+        	file_set[files] = fopen(argv[files], (append_flag ? "a" : "w"));
 	}
 	printf("\n");
 
 	// Output to stdout and files
 	while (scanf ("%79[^\n]\n", file_set) == 1) {
 
-    	for (files = 0; files < argc; files++) {
-     		fprintf(file_set[files], "%s\n", read_line);
-    	}
+    		for (files = 0; files < argc; files++) {
+     			fprintf(file_set[files], "%s\n", read_line);
+    		}
 
-    	printf("%s\n", read_line);
+    		printf("%s\n", read_line);
 
 	}
 
   	// Exit files
   	for (files = 0; files < argc; files++) {
-    	fclose(file_set[files]);
+    		fclose(file_set[files]);
   	}
 
 	return 0;
