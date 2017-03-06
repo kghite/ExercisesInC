@@ -13,7 +13,7 @@ In the sprint 0 retrospective, the main concern that I identified was ensuring t
 
 During this sprint, we continued using the eduScrum model as before, updating our Trello board to keep track of our goals, deadlines, and progress.  Because everyone kept up to date on the readings, we were well prepared for the sprint review.  
 
-We have been building our knowledge of the libraries and topics that we need to finish implementing our MVP during the latter half of the sprint and are planning to put all of our inidividual components together during the first few days of sprint 2.  This is slightly behind where we had planned to be at the end of sprint 1, but we focused on ensuring that every team member has an in depth understanding of all areas of the project material.  We also gained a better understanding of how memory and compilation is implemented on the Arduino.
+We have been building our knowledge of the libraries and topics that we need to finish implementing our MVP during the latter half of the sprint and are planning to put all of our inidividual components together during the first few days of spirnt 2.  This is slightly behind where we had planned to be at the end of sprint 1, but we focused on ensuring that every team member has an in depth understanding of all areas of the project material.  We also gained a better understanding of how memory and compilation is implemented on the Arduino.
 
 
 ## Links to HFC Solutions
