@@ -21,9 +21,7 @@ Overall, I have been working during this sprint both individually and within our
 ## Links to HFC Solutions
 [Chapter 2.5](https://github.com/kghite/ExercisesInC/tree/master/exercises/ex02.5)
 
-[Chapter 3](https://github.com/kghite/ExercisesInC/tree/master/exercises/ex03) 
-
-[Chapter 4](https://github.com/kghite/ExercisesInC/tree/master/exercises/ex04)
+[Chapter 3](https://github.com/kghite/ExercisesInC/tree/master/exercises/ex03)
 
 ## ThinkOS Reading Questions
 [Chapter 4](../reading_questions/think_os_ch4.md)

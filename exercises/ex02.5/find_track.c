@@ -8,6 +8,8 @@ Modified version of an example from Chapter 2.5 of Head First C.
 #include <stdlib.h>
 #include <string.h>
 
+#include <regex.h>
+
 #define NUM_TRACKS 5
 
 char tracks[][80] = {
@@ -26,9 +28,9 @@ void find_track(char search_for[])
 {
     int i;
     for (i=0; i<NUM_TRACKS; i++) {
-	if (strstr(tracks[i], search_for)) {
-	    printf("Track %i: '%s'\n", i, tracks[i]);
-	}
+        if (strstr(tracks[i], search_for)) {
+            printf("Track %i: '%s'\n", i, tracks[i]);
+        }
     }
 }
 
@@ -37,7 +39,26 @@ void find_track(char search_for[])
 // Prints track number and title.
 void find_track_regex(char pattern[])
 {
-    // TODO: fill this in
+    // Set up memory
+    regex_t r;
+    regmatch_t found[NUM_TRACKS];
+
+    // Compute regex
+    // Found regex functions from regex docs and some googled examples
+    int i;
+    // Compile the expression (returns 0 if found)
+    if ( !regcomp( &r, pattern, REG_EXTENDED ) ) {
+        // Loop through the tracks to check
+        for ( i = 0; i < NUM_TRACKS; i++ ) {
+            // Compare the expression to the track strings (returns 0 if found)
+            if ( !regexec( &r, tracks[i], NUM_TRACKS, found, 0 ) ) {
+                printf( "Found track %i with expression '%s'\n", i, tracks[i] );
+            }
+        }
+    }
+
+    // Drop memory
+    regfree(&r);
 }
 
 // Truncates the string at the first newline, if there is one.
@@ -58,8 +79,7 @@ int main (int argc, char *argv[])
     fgets(search_for, 80, stdin);
     rstrip(search_for);
 
-    find_track(search_for);
-    //find_track_regex(search_for);
+    find_track_regex(search_for);
 
     return 0;
 }
