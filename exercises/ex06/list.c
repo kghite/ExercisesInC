@@ -54,8 +54,16 @@ void print_list(Node **list) {
  * returns: int or -1 if the list is empty
  */
 int pop(Node **list) {
-    // FILL THIS IN!
-    return 0;
+  // Save the head value
+  Node *head = *list;
+  int temp = head->val;
+
+  // Check for null
+  if (&head->next != NULL) {
+    **list = *head->next;
+  }
+  
+  return temp;
 }
 
 
@@ -65,7 +73,14 @@ int pop(Node **list) {
  * val: value to add
  */
 void push(Node **list, int val) {
-    // FILL THIS IN!
+    // Get the head value
+    Node *head = *list;
+
+    // Create new node with head as next
+    Node *new_head = make_node(val, head);
+
+    // Reset list to new head
+    *list = new_head;
 }
 
 
@@ -78,11 +93,32 @@ void push(Node **list, int val) {
  *
  * returns: number of nodes removed
  */
+// Recursive solution got weird with **list so did iterative 
 int remove_by_value(Node **list, int val) {
-    // FILL THIS IN!
-    return 0;
-}
+    Node *head = *list;
+    Node *dummy = *list; // Set iterable to the head of the list
 
+    // Base Case 1: null head
+    if (dummy == NULL) {
+        return 0;
+    }
+    else if (dummy->val == val) { // found node 
+        *list = head->next;
+        free(head);
+        return 1;
+    }
+    else {
+        while (dummy->next != NULL) {
+            if (dummy->next->val == val) {
+                Node *delete = dummy->next;
+                dummy->next = dummy->next->next;
+                free(delete);
+            }
+
+            dummy = dummy->next;
+        }
+    }
+}
 
 /* Reverses the elements of the list.
  *
@@ -91,7 +127,18 @@ int remove_by_value(Node **list, int val) {
  * list: pointer to pointer to Node
  */
 void reverse(Node **list) {
-    // FILL THIS IN!
+    Node *prev = NULL;
+    Node *curr = *list; // Set current to head
+    Node *next;
+
+    while (curr != NULL) {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+
+    *list = prev;
 }
 
 
