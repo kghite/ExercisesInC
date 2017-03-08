@@ -25,6 +25,9 @@ typedef struct {
 } Regex;
 
 
+// Functions below written mostly from stackoverflow and regex docs
+
+
 /* Returns a new Regex that matches the given pattern.
  *
  * pattern: string regex
@@ -32,8 +35,16 @@ typedef struct {
  * returns: new Regex 
  */
 Regex *make_regex(char *pattern, int flags) {
-    // FILL THIS IN!
-    return NULL;
+    // Create the regex struct instance (pointer)
+    Regex* regex = malloc(sizeof(Regex));
+
+    int match = regcomp(regex->inner_struct, pattern, flags);
+    if (match) {
+        fprintf(stderr, "Could not compile regex\n");
+        exit(1);
+    }
+
+    return regex;
 }
 
 /* Checks whether a regex matches a string.
@@ -43,8 +54,19 @@ Regex *make_regex(char *pattern, int flags) {
  * returns: 1 if there's a match, 0 otherwise
  */
 int regex_match(Regex *regex, char *s) {
-    // FILL THIS IN!
-    return 0;
+    // regexec: compare string to regular expression
+    int match = regexec(regex->inner_struct, s, 0, NULL, 0);
+
+    char msgbuf[100];
+    if (!match) {
+        return 1;
+    } else if (match == REG_NOMATCH){
+        return 0;
+    } else {
+        regerror(match, regex->inner_struct, msgbuf, sizeof(msgbuf));
+        fprintf(stderr, "Regex match failed: %s\n", msgbuf);
+        return 0;
+    }    
 }
 
 /* Frees a Regex.
@@ -52,7 +74,9 @@ int regex_match(Regex *regex, char *s) {
  * regex: Regex
  */
 void regex_free(Regex *regex) {
-    // FILL THIS IN!
+    // Deallocate and free regex
+    regfree(regex->inner_struct);
+    free(regex);
 }
 
 
@@ -67,9 +91,9 @@ void find_track_regex(char pattern[])
     Regex *regex = make_regex(pattern, REG_EXTENDED | REG_NOSUB);
 
     for (i=0; i<NUM_TRACKS; i++) {
-	if (regex_match(regex, tracks[i])) {
-	    printf("Track %i: '%s'\n", i, tracks[i]);
-	}
+	   if (regex_match(regex, tracks[i])) {
+	       printf("Track %i: '%s'\n", i, tracks[i]);
+	   }
     }
 
     regex_free(regex);
