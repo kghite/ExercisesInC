@@ -14,13 +14,15 @@ Try it out and confirm that the result is interpreted as -12.
 12 -> 1100
 -12 in 2's compliment -> 10100
 
-	0000 1100
+```
+    0000 1100
   ^ 1111 1111
   -----------
-  	1111 0011
+    1111 0011
   + 0000 0001
   -----------
-  	1111 0100
+    1111 0100
+
 
 #include <stdio.h>
 #include <stdint.h>
@@ -32,6 +34,7 @@ int main()
     
     return 0;
 }
+```
 
 3) Can you guess why IEEE floating-point uses biased integers to represent the exponent rather than a
 sign bit or two's complement?
@@ -41,11 +44,13 @@ Storing the exponent as a biased integer allows two numbers to be compared to ea
 4) Following the example in Section 5.4, write the 32-bit binary representation of -13 in single precision 
 IEEE floating-point.  What would you get if you accidentally interpreted this value as an integer?
 
+```
 s = 1
 q = 10000010
 c = 10100000000000000000000
 
 -13 = 11000001010100000000000000000000
+```
 
 5) Write a function that takes a string and converts from lower-case to upper-case by flipping the sixth bit.  
 As a challenge, you can make a faster version by reading the string 32 or 64 bits at a time, rather than one

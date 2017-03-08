@@ -5,7 +5,7 @@
 
 1) Which memory management functions would you expect to take constant time?  Which ones take time proportional to the size of the allocated chunk?
 
-mallod: Takes constant time because it simply creates pointer to some memory space.
+malloc: Takes constant time because it simply creates pointer to some memory space.
 
 calloc: Takes time proportional to the size of the allocated memory because it has to access all of the memory to set every byte to 0.
 
