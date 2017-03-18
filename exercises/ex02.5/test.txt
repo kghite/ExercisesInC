@@ -1,0 +1,5 @@
+Search for: Found track 0 with expression 'So What'
+Found track 1 with expression 'Freddie Freeloader'
+Found track 2 with expression 'Blue in Green'
+Found track 3 with expression 'All Blues'
+Found track 4 with expression 'Flamenco Sketches'
