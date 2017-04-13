@@ -180,7 +180,8 @@ int hash_hashable(Hashable *hashable)
 int equal_int (void *ip, void *jp)
 {
     // FILL THIS IN!
-    return 0;
+    // Create comparable pointers to mem addr and return
+    return *(int*)ip == *(int*)jp;
 }
 
 
@@ -194,7 +195,8 @@ int equal_int (void *ip, void *jp)
 int equal_string (void *s1, void *s2)
 {
     // FILL THIS IN!
-    return 0;
+    // Create comparable pointers to mem addr and return
+    return *(char*)s1 == *(char*)s2;
 }
 
 
@@ -209,7 +211,7 @@ int equal_string (void *s1, void *s2)
 int equal_hashable(Hashable *h1, Hashable *h2)
 {
     // FILL THIS IN!
-    return 0;
+    return h1->equal(h1->key, h2->key);
 }
 
 
@@ -297,8 +299,26 @@ Node *prepend(Hashable *key, Value *value, Node *rest)
 /* Looks up a key and returns the corresponding value, or NULL */
 Value *list_lookup(Node *list, Hashable *key)
 {
-    // FILL THIS IN!
-    return NULL;
+    // Recurse through 
+    // Base case 1: NULL list
+    if (list == NULL) {
+        return NULL;
+    }
+
+    // Base case 2: Found the key-value
+    else if (equal_hashable(list->key, key)) {
+        return list->value;
+    }
+
+    // Base case 3: Value not found and next is NULL
+    else if (list->next == NULL) {
+        return NULL;
+    }
+
+    // Recurse through list
+    else {
+        return list_lookup(list->next, key);
+    }
 }
 
 
@@ -343,6 +363,11 @@ void print_map(Map *map)
 void map_add(Map *map, Hashable *key, Value *value)
 {
     // FILL THIS IN!
+    // Set list
+    int i = key->hash(key->key) % map->n;
+
+    // Add the pair
+    map->lists[i] = prepend(key, value, map->lists[i]);
 }
 
 
@@ -350,7 +375,11 @@ void map_add(Map *map, Hashable *key, Value *value)
 Value *map_lookup(Map *map, Hashable *key)
 {
     // FILL THIS IN!
-    return NULL;
+    // Find list
+    int i = key->hash(key->key) % map->n;
+
+    // Look up value
+    return list_lookup(map->lists[i], key);
 }
 
 
