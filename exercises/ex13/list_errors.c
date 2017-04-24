@@ -43,6 +43,9 @@ int pop(Node **head) {
     retval = (*head)->val;
     *head = next_node;
 
+    // Free dummy node
+    free(*next_node);
+
     return retval;
 }
 
@@ -68,11 +71,15 @@ int remove_by_value(Node **head, int val) {
     }
 
     for(; node->next != NULL; node = node->next) {
-	if (node->next->val == val) {
-	    victim = node->next;
-	    node->next = victim->next;
-	    return 1;
-	}
+    	if (node->next->val == val) {
+    	    victim = node->next;
+    	    node->next = victim->next;
+
+            // Free deleted memory
+            free(victim);
+
+    	    return 1;
+    	}
     }
     return 0;
 }
@@ -96,6 +103,10 @@ void reverse(Node **head) {
 	next = temp;
     }
     *head = node;
+
+    // Free dummy nodes
+    free(temp);
+    free(next);
 }
 
 // Adds a new element to the list before the indexed element.

@@ -23,6 +23,19 @@ typedef struct {
 } Pair;
 
 
+/* Safely remove an element of a glib hash table */
+void delete_table(gpointer k, gpointer v) {
+    g_free((gchar *)k);
+    g_free((gint *)v);
+}
+
+
+/* Safely remove a sequence */
+void delete_pair(gpointer v) {
+    g_free((Pair *)v);
+}
+
+
 /* Compares two key-value pairs by frequency. */
 gint compare_pair (gpointer v1, gpointer v2, gpointer user_data)
 {
@@ -108,6 +121,7 @@ int main (int argc, char** argv)
 	for (i=0; array[i] != NULL; i++) {
 	    incr(hash, array[i]);
 	}
+    g_strfreev (array);
     }
     fclose (fp);
 
@@ -123,6 +137,8 @@ int main (int argc, char** argv)
 
     // try (unsuccessfully) to free everything
     // (in a future exercise, we will fix the memory leaks)
+    g_hash_table_foreach (hash, (GHFunc) delete_table, NULL);
+    g_sequence_foreach (seq, (GFunc) delete_pair, NULL);
     g_hash_table_destroy (hash);
     g_sequence_free (seq);
 
